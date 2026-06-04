@@ -25,7 +25,7 @@
                 <p id="popup-mensagem"></p>
             </div>
             <button onclick="fecharPopup()">Fechar</button>
-            <a id="popup-link" href="#menu" style="display:none;">Voltar ao menu?</a> /* aqui depois manda pro menu */
+            <a id="popup-link" href="#menu" style="display:none;">Voltar ao menu?</a>
         </div>
     </div>
     <script src="login.js"></script>
