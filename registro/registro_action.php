@@ -9,19 +9,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($senha !== $confirmar_senha) {
         echo "As senhas não coincidem!";
     } else {
-        $verificar = "SELECT * FROM usuários WHERE nome = '$nome'";
-        $resultado = mysqli_query($conn, $verificar);
+        $verificar = $conn->prepare("SELECT * FROM usuarios WHERE nome = ?");
+        $verificar->bind_param("s", $nome);
+        $verificar->execute();
+        $resultado = $verificar->get_result();
 
         if (mysqli_num_rows($resultado) > 0) {
             echo "Nome já cadastrado!";
         } else {
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO usuários (nome, senha, confirmar_senha) VALUES ('$nome', '$senha_hash', '$senha_hash')";
+            $sql = $conn->prepare("INSERT INTO usuarios (nome, senha) VALUES (?, ?)");
+            $sql->bind_param("ss", $nome, $senha_hash);
             
-            if (mysqli_query($conn, $sql)) {
+            if ($sql->execute()) {
                 echo "Usuário registrado com sucesso!";
             } else {
-                echo "Erro ao registrar: " . mysqli_error($conn);
+                echo "Erro ao registrar: " . $conn->error;
             }
         }
     }
