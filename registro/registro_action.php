@@ -24,9 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($sql->execute()) {
                 echo "Usuário registrado com sucesso!";
             } else {
-                echo "Erro ao registrar: " . $conn->error;
+                echo "Erro: " . $conn->error . " | " . $sql->error;
             }
         }
     }
+} else {
+    echo "Método inválido";
 }
 ?>
