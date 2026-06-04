@@ -1,9 +1,9 @@
 <?php
-$host = "autorack.proxy.rlwy.net";
+$host = "mainline.proxy.rlwy.net";
 $usuario = "root";
-$senha = "FsXXVBvaTnynQCLgEyaYhdRfZWNALQrU";
+$senha = "EZABcUgMnavABXzeBBoxxIjoxbCKkQla";
 $banco = "railway";
-$porta = 27459;
+$porta = 26703;
 
 $conn = mysqli_connect($host, $usuario, $senha, $banco, $porta);
 
