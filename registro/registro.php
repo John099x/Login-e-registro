@@ -25,7 +25,7 @@
             <div class="campo">
                 <p id="popup-mensagem"></p>
             </div>
-            <button onclick="window.location.href='https://totalloss.up.railway.app/Login/login.php'">Login</button>
+            <button type="button" onclick="window.location.href='https://totalloss.up.railway.app/Login/login.php'">Login</button>
         </div>
     </div>
     <script src="registro.js"></script>
