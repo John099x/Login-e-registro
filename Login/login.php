@@ -25,7 +25,6 @@
                 <p id="popup-mensagem"></p>
             </div>
             <button onclick=window.location.href='https://total-loss.freepage.cc/?i=1'>Homepage</button>
-            <a id="popup-link" href="https://total-loss.freepage.cc/?i=1" style="display:none;">Voltar ao menu?</a>
         </div>
     </div>
     <script src="login.js"></script>
