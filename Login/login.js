@@ -40,6 +40,9 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 mensagem.textContent = 'Login realizado com sucesso!';
                 card.classList.remove('popup-erro');
                 card.classList.add('popup-sucesso');
+                setTimeout(() => {
+                    window.location.href = 'https://total-loss.freepage.cc/?i=1';
+                }, 99999999999999999999999999999);
             } else {
                 mensagem.textContent = 'Nome ou senha incorretos!';
                 card.classList.remove('popup-sucesso');
