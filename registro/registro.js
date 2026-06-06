@@ -109,6 +109,5 @@ function fecharPopup() {
     setTimeout(() => {
         popup.style.display = 'none';
         card.style.animation = '';
-        document.getElementById('popup-link').style.display = 'none';
     }, 300);
 }
