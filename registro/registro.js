@@ -58,7 +58,9 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 mensagem.textContent = 'Registro feito com sucesso!';
                 card.classList.remove('popup-erro');
                 card.classList.add('popup-sucesso');
-                link.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'https://totalloss.up.railway.app/Login/login.php';
+                }, 1000);
             } else {
                 mensagem.textContent = 'Erro ao registrar, Tente novamente!';
                 card.classList.remove('popup-sucesso');
