@@ -26,7 +26,7 @@
                 <p id="popup-mensagem"></p>
             </div>
             <button onclick="fecharPopup()">Fechar</button>
-            <a id="popup-link" href="totalloss.up.railway.app" style="display:none;">Fazer login?</a>
+            <a id="popup-link" href="/Login/login.php" style="display:none;">Fazer login?</a>
         </div>
     </div>
     <script src="registro.js"></script>
