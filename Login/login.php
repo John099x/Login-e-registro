@@ -24,7 +24,7 @@
             <div class="campo">
                 <p id="popup-mensagem"></p>
             </div>
-            <button onclick="fecharPopup()">Voltar ao menu?</button>
+            <button onclick="fecharPopup()">Home</button>
             <a id="popup-link" href="https://total-loss.freepage.cc/?i=1" style="display:none;">Voltar ao menu?</a>
         </div>
     </div>
