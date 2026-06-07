@@ -25,7 +25,7 @@
             <div class="campo">
                 <p id="popup-mensagem"></p>
             </div>
-            <button type="button" onclick=window.location.href='https://total-loss.fixreepage.cc/?i=1'>Homepage</button>
+            <button type="button" onclick="window.location.href='https://totalloss.up.railway.app'">Homepage</button>
         </div>
     </div>
     <script src="login.js"></script>
