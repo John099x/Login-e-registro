@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="dec.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <title>Registro</title>
     </head>
 <body>
     <form action="registro_action.php" method="POST">
