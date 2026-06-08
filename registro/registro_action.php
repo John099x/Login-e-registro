@@ -1,10 +1,11 @@
-<?php 
+<?php
+session_start();
 include '../conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
-    $confirmar_senha = $_POST['confirmar_senha'];
+    $nome             = $_POST['nome'];
+    $senha            = $_POST['senha'];
+    $confirmar_senha  = $_POST['confirmar_senha'];
 
     if ($senha !== $confirmar_senha) {
         echo "As senhas não coincidem!";
@@ -20,11 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
             $sql = $conn->prepare("INSERT INTO usuarios (nome, senha) VALUES (?, ?)");
             $sql->bind_param("ss", $nome, $senha_hash);
-            
+
             if ($sql->execute()) {
+                // Loga automaticamente após o registro
+                $_SESSION['usuario_id']   = $conn->insert_id;
+                $_SESSION['usuario_nome'] = $nome;
+
                 echo "Usuário registrado com sucesso!";
             } else {
-                echo "Erro: " . $conn->error . " | " . $sql->error;
+                echo "Erro: " . $conn->error;
             }
         }
     }
