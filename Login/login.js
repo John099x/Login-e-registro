@@ -1,12 +1,12 @@
-const nome = document.getElementById('nome');
+const nome  = document.getElementById('nome');
 const senha = document.getElementById('senha');
 let tentouEnviar = false;
 
+const URL_SITE = 'https://totalloss.up.railway.app';
+
 nome.addEventListener('invalid', function() {
     nome.classList.add('erro');
-    if (nome.validity.typeMismatch) {
-        nome.setCustomValidity('Digite um nome válido!');
-    } else if (nome.validity.valueMissing) {
+    if (nome.validity.valueMissing) {
         nome.setCustomValidity('Por favor, coloque seu nome!');
     }
 });
@@ -20,7 +20,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
     tentouEnviar = true;
 
-    const nomeValido = nome.reportValidity();
+    const nomeValido  = nome.reportValidity();
     const senhaValida = senha.reportValidity();
 
     if (nomeValido && senhaValida) {
@@ -31,25 +31,22 @@ document.querySelector('form').addEventListener('submit', function(e) {
         })
         .then(res => res.text())
         .then(resposta => {
-            const popup = document.getElementById('popup');
-            const card = document.getElementById('popup-card');
-            const mensagem = document.getElementById('popup-mensagem');
-            const link = document.getElementById('popup-link');
-
             if (resposta.includes('sucesso')) {
-                mensagem.textContent = 'Login realizado com sucesso!';
-                card.classList.remove('popup-erro');
-                card.classList.add('popup-sucesso');
+                // Redireciona direto para o site principal
+                window.location.href = URL_SITE;
             } else {
+                const popup    = document.getElementById('popup');
+                const card     = document.getElementById('popup-card');
+                const mensagem = document.getElementById('popup-mensagem');
+
                 mensagem.textContent = 'Nome ou senha incorretos!';
                 card.classList.remove('popup-sucesso');
                 card.classList.add('popup-erro');
-                link.style.display = 'none';
+                card.classList.remove('popup-card-animar');
+                card.style.animation = '';
+                card.classList.add('popup-card-animar');
+                popup.style.display = 'flex';
             }
-            card.classList.remove('popup-card-animar');
-            card.style.animation = '';
-            card.classList.add('popup-card-animar');
-            popup.style.display = 'flex';
         });
     }
 });
@@ -65,9 +62,10 @@ senha.addEventListener('input', function() {
     senha.classList.remove('erro');
     if (tentouEnviar) senha.reportValidity();
 });
+
 function fecharPopup() {
     const popup = document.getElementById('popup');
-    const card = document.getElementById('popup-card');
+    const card  = document.getElementById('popup-card');
     card.style.animation = 'fadeOut 0.3s ease';
     setTimeout(() => {
         popup.style.display = 'none';
