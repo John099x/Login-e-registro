@@ -1,13 +1,13 @@
-const nome = document.getElementById('nome');
-const senha = document.getElementById('senha');
+const nome          = document.getElementById('nome');
+const senha         = document.getElementById('senha');
 const confirmarSenha = document.getElementById('confirmarSenha');
 let tentouEnviar = false;
 
+const URL_SITE = 'https://totalloss.up.railway.app';
+
 nome.addEventListener('invalid', function() {
     nome.classList.add('erro');
-    if (nome.validity.typeMismatch) {
-        nome.setCustomValidity('Digite um nome válido!');
-    } else if (nome.validity.valueMissing) {
+    if (nome.validity.valueMissing) {
         nome.setCustomValidity('Por favor, coloque seu nome!');
     }
 });
@@ -37,8 +37,8 @@ document.querySelector('form').addEventListener('submit', function(e) {
         confirmarSenha.setCustomValidity('');
     }
 
-    const nomeValido = nome.reportValidity();
-    const senhaValida = senha.reportValidity();
+    const nomeValido          = nome.reportValidity();
+    const senhaValida         = senha.reportValidity();
     const confirmarSenhaValida = confirmarSenha.reportValidity();
 
     if (nomeValido && senhaValida && confirmarSenhaValida) {
@@ -49,24 +49,25 @@ document.querySelector('form').addEventListener('submit', function(e) {
         })
         .then(res => res.text())
         .then(resposta => {
-            const popup = document.getElementById('popup');
-            const card = document.getElementById('popup-card');
-            const mensagem = document.getElementById('popup-mensagem');
-
             if (resposta.includes('sucesso')) {
-                mensagem.textContent = 'Registro feito com sucesso!';
-                card.classList.remove('popup-erro');
-                card.classList.add('popup-sucesso');
+                // Redireciona direto para o site principal após registrar
+                window.location.href = URL_SITE;
             } else {
-                mensagem.textContent = 'Erro ao registrar, Tente novamente!';
+                const popup    = document.getElementById('popup');
+                const card     = document.getElementById('popup-card');
+                const mensagem = document.getElementById('popup-mensagem');
+
+                mensagem.textContent = resposta.includes('cadastrado')
+                    ? 'Este nome já está cadastrado!'
+                    : 'Erro ao registrar, tente novamente!';
+
                 card.classList.remove('popup-sucesso');
                 card.classList.add('popup-erro');
-                link.style.display = 'none';
+                card.classList.remove('popup-card-animar');
+                card.style.animation = '';
+                card.classList.add('popup-card-animar');
+                popup.style.display = 'flex';
             }
-            card.classList.remove('popup-card-animar');
-            card.style.animation = '';
-            card.classList.add('popup-card-animar');
-            popup.style.display = 'flex';
         });
     }
 });
@@ -98,9 +99,9 @@ confirmarSenha.addEventListener('input', function() {
     if (tentouEnviar) confirmarSenha.reportValidity();
 });
 
-function fecharPopup() { 
+function fecharPopup() {
     const popup = document.getElementById('popup');
-    const card = document.getElementById('popup-card');
+    const card  = document.getElementById('popup-card');
     card.style.animation = 'fadeOut 0.3s ease';
     setTimeout(() => {
         popup.style.display = 'none';
